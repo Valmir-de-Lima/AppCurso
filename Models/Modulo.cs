@@ -23,6 +23,8 @@ public class Modulo
 
     public IList<Aula>? Aulas { get; set; }
 
+    [DisplayName("Curso")]
+    [Required(ErrorMessage = "Campo obrigatório")]
     public int CursoId { get; set; }
     public Curso? Curso { get; set; }
 }

@@ -21,6 +21,8 @@ public class Aula
     [Required(ErrorMessage = "Campo obrigatório")]
     public string UrlVideoAula { get; set; } = "";
 
+    [DisplayName("Módulo")]
+    [Required(ErrorMessage = "Campo obrigatório")]
     public int ModuloId { get; set; }
     public Modulo? Modulo { get; set; }
 }
