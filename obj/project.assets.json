@@ -10323,11 +10323,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\dev\\net\\learn\\AppCurso\\AppCurso.csproj",
+      "projectUniqueName": "C:\\dev\\net\\learn\\App\\AppCurso\\AppCurso.csproj",
       "projectName": "AppCurso",
-      "projectPath": "C:\\dev\\net\\learn\\AppCurso\\AppCurso.csproj",
+      "projectPath": "C:\\dev\\net\\learn\\App\\AppCurso\\AppCurso.csproj",
       "packagesPath": "C:\\Users\\valmi\\.nuget\\packages\\",
-      "outputPath": "C:\\dev\\net\\learn\\AppCurso\\obj\\",
+      "outputPath": "C:\\dev\\net\\learn\\App\\AppCurso\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

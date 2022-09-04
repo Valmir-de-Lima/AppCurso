@@ -9,7 +9,7 @@ using AppCurso.Data;
 using AppCurso.Models;
 using Microsoft.AspNetCore.Authorization;
 
-namespace AppCurso.Controllers
+namespace AppCurso
 {
     [Authorize]
     public class CursoController : Controller

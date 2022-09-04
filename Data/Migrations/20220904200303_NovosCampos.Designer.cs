@@ -3,6 +3,7 @@ using System;
 using AppCurso.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppCurso.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220904200303_NovosCampos")]
+    partial class NovosCampos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.8");
@@ -25,30 +27,24 @@ namespace AppCurso.Data.Migrations
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("TEXT")
-                        .HasColumnName("Descricao");
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("ModuloId")
+                    b.Property<int?>("ModuloId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Titulo")
                         .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("TEXT")
-                        .HasColumnName("Titulo");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("UrlVideoAula")
                         .IsRequired()
-                        .HasMaxLength(120)
-                        .HasColumnType("TEXT")
-                        .HasColumnName("UrlVideoAula");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ModuloId");
 
-                    b.ToTable("Aula", (string)null);
+                    b.ToTable("Aulas");
                 });
 
             modelBuilder.Entity("AppCurso.Models.Curso", b =>
@@ -58,14 +54,11 @@ namespace AppCurso.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("DuracaoEmMinutos")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("DuracaoEmMinutos");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Sumario")
                         .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("TEXT")
-                        .HasColumnName("Sumario");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Tag")
                         .IsRequired()
@@ -73,13 +66,11 @@ namespace AppCurso.Data.Migrations
 
                     b.Property<string>("Titulo")
                         .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("TEXT")
-                        .HasColumnName("Titulo");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Curso", (string)null);
+                    b.ToTable("Cursos");
                 });
 
             modelBuilder.Entity("AppCurso.Models.Modulo", b =>
@@ -88,30 +79,25 @@ namespace AppCurso.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CursoId")
+                    b.Property<int?>("CursoId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("TEXT")
-                        .HasColumnName("Descricao");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("OrdemExibicao")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("UrlVideoAula");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Titulo")
                         .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("TEXT")
-                        .HasColumnName("Titulo");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CursoId");
 
-                    b.ToTable("Modulo", (string)null);
+                    b.ToTable("Modulos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -314,10 +300,7 @@ namespace AppCurso.Data.Migrations
                 {
                     b.HasOne("AppCurso.Models.Modulo", "Modulo")
                         .WithMany("Aulas")
-                        .HasForeignKey("ModuloId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_Aula_Modulo");
+                        .HasForeignKey("ModuloId");
 
                     b.Navigation("Modulo");
                 });
@@ -326,10 +309,7 @@ namespace AppCurso.Data.Migrations
                 {
                     b.HasOne("AppCurso.Models.Curso", "Curso")
                         .WithMany("Modulos")
-                        .HasForeignKey("CursoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_Modulo_Curso");
+                        .HasForeignKey("CursoId");
 
                     b.Navigation("Curso");
                 });

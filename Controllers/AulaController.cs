@@ -9,7 +9,7 @@ using AppCurso.Data;
 using AppCurso.Models;
 using Microsoft.AspNetCore.Authorization;
 
-namespace AppCurso.Controllers
+namespace AppCurso
 {
     [Authorize]
     public class AulaController : Controller
@@ -24,9 +24,8 @@ namespace AppCurso.Controllers
         // GET: Aula
         public async Task<IActionResult> Index()
         {
-            return _context.Aulas != null ?
-                        View(await _context.Aulas.ToListAsync()) :
-                        Problem("Entity set 'ApplicationDbContext.Aulas'  is null.");
+            var applicationDbContext = _context.Aulas.Include(a => a.Modulo);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Aula/Details/5
@@ -38,6 +37,7 @@ namespace AppCurso.Controllers
             }
 
             var aula = await _context.Aulas
+                .Include(a => a.Modulo)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (aula == null)
             {
@@ -50,6 +50,7 @@ namespace AppCurso.Controllers
         // GET: Aula/Create
         public IActionResult Create()
         {
+            ViewData["ModuloId"] = new SelectList(_context.Modulos, "Id", "Descricao");
             return View();
         }
 
@@ -58,7 +59,7 @@ namespace AppCurso.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Titulo,Descricao,UrlVideoAula")] Aula aula)
+        public async Task<IActionResult> Create([Bind("Id,Titulo,Descricao,UrlVideoAula,ModuloId")] Aula aula)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +67,7 @@ namespace AppCurso.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ModuloId"] = new SelectList(_context.Modulos, "Id", "Descricao", aula.ModuloId);
             return View(aula);
         }
 
@@ -82,6 +84,7 @@ namespace AppCurso.Controllers
             {
                 return NotFound();
             }
+            ViewData["ModuloId"] = new SelectList(_context.Modulos, "Id", "Descricao", aula.ModuloId);
             return View(aula);
         }
 
@@ -90,7 +93,7 @@ namespace AppCurso.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,Descricao,UrlVideoAula")] Aula aula)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,Descricao,UrlVideoAula,ModuloId")] Aula aula)
         {
             if (id != aula.Id)
             {
@@ -117,6 +120,7 @@ namespace AppCurso.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ModuloId"] = new SelectList(_context.Modulos, "Id", "Descricao", aula.ModuloId);
             return View(aula);
         }
 
@@ -129,6 +133,7 @@ namespace AppCurso.Controllers
             }
 
             var aula = await _context.Aulas
+                .Include(a => a.Modulo)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (aula == null)
             {

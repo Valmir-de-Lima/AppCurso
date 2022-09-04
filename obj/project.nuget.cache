@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eTdqtY4SLLcmUQvZMIZXFZMxfhN8u56rSndx8+6UBbla9x+ncmh98IRYFPqSIp1dfYei19KdWx1luWwOQ7uVDw==",
+  "dgSpecHash": "/LzzIwijk6YCw8tZMPJ6MjvbpMU0s6V6djEF6JduwD4SfIJFG+opMylEqTyJdBXxHazLVg+JydEYq9pN+GPvXA==",
   "success": true,
-  "projectFilePath": "C:\\dev\\net\\learn\\AppCurso\\AppCurso.csproj",
+  "projectFilePath": "C:\\dev\\net\\learn\\App\\AppCurso\\AppCurso.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\valmi\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\valmi\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

@@ -20,4 +20,7 @@ public class Aula
     [DisplayName("URL do vídeo da aula")]
     [Required(ErrorMessage = "Campo obrigatório")]
     public string UrlVideoAula { get; set; } = "";
+
+    public int ModuloId { get; set; }
+    public Modulo? Modulo { get; set; }
 }

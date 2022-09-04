@@ -21,6 +21,8 @@ public class Modulo
     [Required(ErrorMessage = "Campo obrigatório")]
     public int OrdemExibicao { get; set; }
 
-    [Required(ErrorMessage = "Campo obrigatório")]
-    public List<Aula>? Aulas { get; set; }
+    public IList<Aula>? Aulas { get; set; }
+
+    public int CursoId { get; set; }
+    public Curso? Curso { get; set; }
 }
