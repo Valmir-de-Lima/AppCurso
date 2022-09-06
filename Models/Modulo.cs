@@ -9,7 +9,7 @@ public class Modulo
     [Required(ErrorMessage = "Campo obrigatório")]
     public int Id { get; set; }
 
-    [DisplayName("Título do módulo")]
+    [DisplayName("Módulo")]
     [Required(ErrorMessage = "Campo obrigatório")]
     public string Titulo { get; set; } = "";
 
@@ -17,7 +17,7 @@ public class Modulo
     [Required(ErrorMessage = "Campo obrigatório")]
     public string Descricao { get; set; } = "";
 
-    [DisplayName("Módulo")]
+    [DisplayName("Ordem")]
     [Required(ErrorMessage = "Campo obrigatório")]
     public int OrdemExibicao { get; set; }
 

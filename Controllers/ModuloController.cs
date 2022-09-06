@@ -50,7 +50,7 @@ namespace AppCurso
         // GET: Modulo/Create
         public IActionResult Create()
         {
-            ViewData["CursoId"] = new SelectList(_context.Cursos, "Id", "Sumario");
+            ViewData["CursoId"] = new SelectList(_context.Cursos, "Id", "Titulo");
             return View();
         }
 
@@ -67,7 +67,7 @@ namespace AppCurso
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CursoId"] = new SelectList(_context.Cursos, "Id", "Sumario", modulo.CursoId);
+            ViewData["CursoId"] = new SelectList(_context.Cursos, "Id", "Titulo", modulo.CursoId);
             return View(modulo);
         }
 
@@ -84,7 +84,7 @@ namespace AppCurso
             {
                 return NotFound();
             }
-            ViewData["CursoId"] = new SelectList(_context.Cursos, "Id", "Sumario", modulo.CursoId);
+            ViewData["CursoId"] = new SelectList(_context.Cursos, "Id", "Titulo", modulo.CursoId);
             return View(modulo);
         }
 
@@ -120,7 +120,7 @@ namespace AppCurso
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CursoId"] = new SelectList(_context.Cursos, "Id", "Sumario", modulo.CursoId);
+            ViewData["CursoId"] = new SelectList(_context.Cursos, "Id", "Titulo", modulo.CursoId);
             return View(modulo);
         }
 

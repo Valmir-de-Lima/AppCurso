@@ -66,7 +66,7 @@ namespace AppCurso
         // GET: Aula/Create
         public IActionResult Create()
         {
-            ViewData["ModuloId"] = new SelectList(_context.Modulos, "Id", "Descricao");
+            ViewData["ModuloId"] = new SelectList(_context.Modulos, "Id", "Titulo");
             return View();
         }
 
@@ -83,7 +83,7 @@ namespace AppCurso
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ModuloId"] = new SelectList(_context.Modulos, "Id", "Descricao", aula.ModuloId);
+            ViewData["ModuloId"] = new SelectList(_context.Modulos, "Id", "Titulo", aula.ModuloId);
             return View(aula);
         }
 
@@ -100,7 +100,7 @@ namespace AppCurso
             {
                 return NotFound();
             }
-            ViewData["ModuloId"] = new SelectList(_context.Modulos, "Id", "Descricao", aula.ModuloId);
+            ViewData["ModuloId"] = new SelectList(_context.Modulos, "Id", "Titulo", aula.ModuloId);
             return View(aula);
         }
 
@@ -136,7 +136,7 @@ namespace AppCurso
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ModuloId"] = new SelectList(_context.Modulos, "Id", "Descricao", aula.ModuloId);
+            ViewData["ModuloId"] = new SelectList(_context.Modulos, "Id", "Titulo", aula.ModuloId);
             return View(aula);
         }
 

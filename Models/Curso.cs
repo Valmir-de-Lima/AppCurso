@@ -9,7 +9,7 @@ public class Curso
     [Required(ErrorMessage = "Campo obrigatório")]
     public int Id { get; set; }
 
-    [DisplayName("Título do curso")]
+    [DisplayName("Curso")]
     [Required(ErrorMessage = "Campo obrigatório")]
     public string Titulo { get; set; } = "";
 
