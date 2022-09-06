@@ -33,7 +33,7 @@ namespace AppCurso.Data.Mappings
 
             builder.Property(x => x.OrdemExibicao)
                  .IsRequired()  // NT NULL
-                 .HasColumnName("UrlVideoAula")
+                 .HasColumnName("OrdemDeExibicao")
                  .HasColumnType("INTEGER");
 
             // Relacionamentos um para muitos

@@ -29,11 +29,18 @@
             @Html.DisplayFor(model => model.UrlVideoAula)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Modulo)
+            @Html.DisplayNameFor(model => model.Modulo.Titulo)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Modulo.Descricao)
+            @Html.DisplayFor(model => model.Modulo.Titulo)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Modulo.Curso.Titulo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Modulo.Curso.Titulo)
+        </dd>
+
     </dl>
 </div>
 <div>
