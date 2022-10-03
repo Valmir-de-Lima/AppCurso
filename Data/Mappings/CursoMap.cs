@@ -35,6 +35,10 @@ namespace AppCurso.Data.Mappings
                  .IsRequired()  // NT NULL
                  .HasColumnName("DuracaoEmMinutos")
                  .HasColumnType("INTEGER");
+
+            builder.Property(x => x.DuracaoEmHoras)
+                 .HasColumnName("DuracaoEmHoras")
+                 .HasComputedColumnSql("[DuracaoEmMinutos] / 60");
         }
     }
 }

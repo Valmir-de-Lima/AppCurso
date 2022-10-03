@@ -24,5 +24,8 @@ public class Curso
     [Required(ErrorMessage = "Campo obrigatório")]
     public int DuracaoEmMinutos { get; set; }
 
+    [DisplayName("horas")]
+    public int DuracaoEmHoras { get; set; }
+
     public IList<Modulo>? Modulos { get; set; }
 }

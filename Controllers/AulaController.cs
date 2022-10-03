@@ -24,6 +24,11 @@ namespace AppCurso
         // GET: Aula
         public async Task<IActionResult> Index()
         {
+            if (_context.Aulas == null)
+            {
+                return NotFound();
+            }
+
             var applicationDbContext = _context.Aulas.Include(a => a.Modulo);
             return View(await applicationDbContext.ToListAsync());
         }
@@ -37,31 +42,18 @@ namespace AppCurso
             }
 
             var aula = await _context.Aulas
-                .Include(a => a.Modulo)
+                .Include(x => x.Modulo)
+                .ThenInclude(x => x.Curso)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (aula == null)
             {
                 return NotFound();
             }
 
-            aula.Modulo = GetModulo(aula.ModuloId);
-
             return View(aula);
         }
-
-        // Pega o módulo que pertence a aula
-        public Modulo GetModulo(int id)
-        {
-            var modulo = _context.Modulos
-                .FirstOrDefault(x => x.Id == id);
-
-            modulo.Curso = _context.Cursos
-                .FirstOrDefault(x => x.Id == modulo.CursoId);
-
-            return modulo;
-        }
-
-
 
         // GET: Aula/Create
         public IActionResult Create()

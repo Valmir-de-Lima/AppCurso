@@ -4,10 +4,10 @@
     ViewData["Title"] = "Listagem das Aulas";
 }
 
-<h1>Listagem de aulas</h1>
+<h1>Listagem de Aulas</h1>
 
 <p>
-    <a asp-action="Create">Criar uma nova aula</a>
+    <a asp-action="Create">Criar uma nova Aula</a>
 </p>
 <table class="table">
     <thead>
@@ -41,7 +41,7 @@
                     @Html.DisplayFor(modelItem => item.UrlVideoAula)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Modulo.Descricao)
+                    @Html.DisplayFor(modelItem => item.Modulo.Titulo)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |

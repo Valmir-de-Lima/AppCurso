@@ -38,41 +38,18 @@ namespace AppCurso
             }
 
             var curso = await _context.Cursos
+                .Include(x => x.Modulos)
+                .ThenInclude(x => x.Aulas)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (curso == null)
             {
                 return NotFound();
             }
 
-            curso.Modulos = GetModulos(id);
+            //curso.Modulos = GetModulos(id);
 
             return View(curso);
-        }
-
-        // Pega todos os módulos de um curso
-        public List<Modulo> GetModulos(int? id)
-        {
-            var modulos = _context.Modulos
-                .Where(x => x.CursoId == id)
-                .OrderBy(x => x.OrdemExibicao)
-                .ToList();
-
-            foreach (var modulo in modulos)
-            {
-                modulo.Aulas = GetAulas(modulo.Id);
-            }
-
-            return modulos;
-        }
-
-        // Pega todas as aulas de um módulo
-        public List<Aula> GetAulas(int? id)
-        {
-            var aulas = _context.Aulas
-                .Where(x => x.ModuloId == id)
-                .ToList();
-
-            return aulas;
         }
 
         // GET: Curso/Create

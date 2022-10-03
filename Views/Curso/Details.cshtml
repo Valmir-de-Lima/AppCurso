@@ -33,6 +33,13 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DuracaoEmMinutos)
+            <label>&nbsp</label>
+            <label>&nbsp</label>
+            <label>(</label>
+            @Html.DisplayFor(model => model.DuracaoEmHoras)
+            <label>&nbsp</label>
+            @Html.DisplayNameFor(model => model.DuracaoEmHoras)
+            <label>)</label>
         </dd>
     </dl>
     <hr />
