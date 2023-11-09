@@ -50,7 +50,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true">
+                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true">
                         <div class="container">
                             <div class="row row-cols-auto">
                                 <div class="col">
@@ -78,27 +78,6 @@
                         </div>
                     </button>
                 </h2>
-                @foreach (var aula in modulo.Aulas)
-                {
-                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                        <div class="accordion-body">
-                            <div class="row row-cols-auto">
-                                <div class="col">
-                                </div>
-                                <div class="col">
-                                    @Html.DisplayNameFor(modelItem => aula.Id)
-                                    <label>:&nbsp</label>
-                                    @Html.DisplayFor(modelItem => aula.Id)
-                                </div>
-                                <div class="col">
-                                    @Html.DisplayNameFor(modelItem => aula.Titulo)
-                                    <label>:&nbsp</label>
-                                    @Html.DisplayFor(modelItem => aula.Titulo)
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
             </div>
         }
     </div>

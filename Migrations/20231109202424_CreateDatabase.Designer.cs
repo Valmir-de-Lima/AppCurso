@@ -8,50 +8,16 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace AppCurso.Data.Migrations
+namespace AppCurso.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220916135525_CampoCalculado")]
-    partial class CampoCalculado
+    [Migration("20231109202424_CreateDatabase")]
+    partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.8");
-
-            modelBuilder.Entity("AppCurso.Models.Aula", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("TEXT")
-                        .HasColumnName("Descricao");
-
-                    b.Property<int>("ModuloId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Titulo")
-                        .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("TEXT")
-                        .HasColumnName("Titulo");
-
-                    b.Property<string>("UrlVideoAula")
-                        .IsRequired()
-                        .HasMaxLength(120)
-                        .HasColumnType("TEXT")
-                        .HasColumnName("UrlVideoAula");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ModuloId");
-
-                    b.ToTable("Aula", (string)null);
-                });
 
             modelBuilder.Entity("AppCurso.Models.Curso", b =>
                 {
@@ -120,6 +86,27 @@ namespace AppCurso.Data.Migrations
                     b.HasIndex("CursoId");
 
                     b.ToTable("Modulo", (string)null);
+                });
+
+            modelBuilder.Entity("AppCurso.Models.Produto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("Descricao");
+
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("REAL")
+                        .HasColumnName("Preco");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Produto", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -318,18 +305,6 @@ namespace AppCurso.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("AppCurso.Models.Aula", b =>
-                {
-                    b.HasOne("AppCurso.Models.Modulo", "Modulo")
-                        .WithMany("Aulas")
-                        .HasForeignKey("ModuloId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_Aula_Modulo");
-
-                    b.Navigation("Modulo");
-                });
-
             modelBuilder.Entity("AppCurso.Models.Modulo", b =>
                 {
                     b.HasOne("AppCurso.Models.Curso", "Curso")
@@ -396,11 +371,6 @@ namespace AppCurso.Data.Migrations
             modelBuilder.Entity("AppCurso.Models.Curso", b =>
                 {
                     b.Navigation("Modulos");
-                });
-
-            modelBuilder.Entity("AppCurso.Models.Modulo", b =>
-                {
-                    b.Navigation("Aulas");
                 });
 #pragma warning restore 612, 618
         }

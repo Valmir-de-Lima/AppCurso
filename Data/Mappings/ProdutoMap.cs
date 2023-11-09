@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AppCurso.Data.Mappings
 {
-    public class AulaMap : IEntityTypeConfiguration<Aula>
+    public class ProdutoMap : IEntityTypeConfiguration<Produto>
     {
-        public void Configure(EntityTypeBuilder<Aula> builder)
+        public void Configure(EntityTypeBuilder<Produto> builder)
         {
             // Tabela
-            builder.ToTable("Aula");
+            builder.ToTable("Produto");
 
             // Chave Primária
             builder.HasKey(x => x.Id);
@@ -19,29 +19,22 @@ namespace AppCurso.Data.Mappings
                 .ValueGeneratedOnAdd();
 
             // Propriedades            
-            builder.Property(x => x.Titulo)
-                 .IsRequired()  // NT NULL
-                 .HasColumnName("Titulo")
-                 .HasColumnType("TEXT")
-                 .HasMaxLength(80);
-
             builder.Property(x => x.Descricao)
                  .IsRequired()  // NT NULL
                  .HasColumnName("Descricao")
                  .HasColumnType("TEXT")
                  .HasMaxLength(80);
 
-            builder.Property(x => x.UrlVideoAula)
+            builder.Property(x => x.Preco)
                  .IsRequired()  // NT NULL
-                 .HasColumnName("UrlVideoAula")
-                 .HasColumnType("TEXT")
-                 .HasMaxLength(120);
+                 .HasColumnName("Preco")
+                 .HasColumnType("REAL");
 
             // Relacionamentos um para muitos
-            builder.HasOne(x => x.Modulo)
-                .WithMany(x => x.Aulas)
-                .HasConstraintName("FK_Aula_Modulo")
-                .OnDelete(DeleteBehavior.Cascade);
+            // builder.HasOne(x => x.Modulo)
+            //     .WithMany(x => x.Aulas)
+            //     .HasConstraintName("FK_Aula_Modulo")
+            //     .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -1,28 +1,22 @@
-@model IEnumerable<AppCurso.Models.Aula>
+@model IEnumerable<AppCurso.Models.Produto>
 
 @{
-    ViewData["Title"] = "Listagem das Aulas";
+    ViewData["Title"] = "Listagem de Produtos";
 }
 
-<h1>Listagem de Aulas</h1>
+<h1>Listagem de Produtos</h1>
 
 <p>
-    <a asp-action="Create">Criar uma nova Aula</a>
+    <a asp-action="Create">Criar um novo Produto</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Titulo)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Descricao)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UrlVideoAula)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Modulo)
+                @Html.DisplayNameFor(model => model.Preco)
             </th>
             <th></th>
         </tr>
@@ -32,16 +26,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Titulo)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Descricao)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UrlVideoAula)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Modulo.Titulo)
+                    @Html.DisplayFor(modelItem => item.Preco)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |

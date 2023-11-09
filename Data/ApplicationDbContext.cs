@@ -10,7 +10,7 @@ public class ApplicationDbContext : IdentityDbContext
 {
     public DbSet<Curso>? Cursos { get; set; }
     public DbSet<Modulo>? Modulos { get; set; }
-    public DbSet<Aula>? Aulas { get; set; }
+    public DbSet<Produto>? Produtos { get; set; }
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {
@@ -19,7 +19,7 @@ public class ApplicationDbContext : IdentityDbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.ApplyConfiguration(new AulaMap());
+        modelBuilder.ApplyConfiguration(new ProdutoMap());
         modelBuilder.ApplyConfiguration(new ModuloMap());
         modelBuilder.ApplyConfiguration(new CursoMap());
     }
