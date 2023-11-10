@@ -66,21 +66,13 @@ namespace AppCurso.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("Titulo");
 
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("TEXT")
-                        .HasColumnName("Descricao");
-
-                    b.Property<decimal>("Preco")
-                        .HasColumnType("DECIMAL")
-                        .HasColumnName("Preco");
-
                     b.Property<int>("ProdutoId")
                         .HasColumnType("INTEGER")
                         .HasColumnName("ProdutoId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProdutoId");
 
                     b.ToTable("Pedido", (string)null);
                 });
@@ -300,6 +292,17 @@ namespace AppCurso.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("AppCurso.Models.Pedido", b =>
+                {
+                    b.HasOne("AppCurso.Models.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Produto");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

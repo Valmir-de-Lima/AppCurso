@@ -66,22 +66,6 @@ namespace AppCurso.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Pedido",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Titulo = table.Column<string>(type: "TEXT", maxLength: 80, nullable: false),
-                    ProdutoId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Descricao = table.Column<string>(type: "TEXT", maxLength: 80, nullable: false),
-                    Preco = table.Column<decimal>(type: "DECIMAL", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Pedido", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Produto",
                 columns: table => new
                 {
@@ -201,6 +185,26 @@ namespace AppCurso.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Pedido",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Titulo = table.Column<string>(type: "TEXT", maxLength: 80, nullable: false),
+                    ProdutoId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Pedido", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Pedido_Produto_ProdutoId",
+                        column: x => x.ProdutoId,
+                        principalTable: "Produto",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -237,6 +241,11 @@ namespace AppCurso.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pedido_ProdutoId",
+                table: "Pedido",
+                column: "ProdutoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -263,13 +272,13 @@ namespace AppCurso.Migrations
                 name: "Pedido");
 
             migrationBuilder.DropTable(
-                name: "Produto");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Produto");
         }
     }
 }

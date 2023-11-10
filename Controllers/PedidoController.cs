@@ -50,6 +50,14 @@ namespace AppCurso
         // GET: Modulo/Create
         public IActionResult Create()
         {
+            // Obtenha a lista de produtos do banco de dados
+            var produtos = _context.Produtos!.ToList();
+
+            // Crie um SelectList para os produtos
+            SelectList produtoList = new SelectList(produtos, "Id", "Descricao", "Preco");
+
+            // Armazene o SelectList em ViewBag para uso na visão
+            ViewBag.ProdutoId = produtoList;
             return View();
         }
 
@@ -62,6 +70,10 @@ namespace AppCurso
         {
             if (ModelState.IsValid)
             {
+                Produto? produto = await _context.Produtos!.FindAsync(pedido.ProdutoId);
+                if (produto is not null)
+                    pedido.Produto = produto;
+
                 _context.Add(pedido);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -101,6 +113,9 @@ namespace AppCurso
             {
                 try
                 {
+                    Produto? produto = await _context.Produtos!.FindAsync(pedido.ProdutoId);
+                    if (produto is not null)
+                        pedido.Produto = produto;
                     _context.Update(pedido);
                     await _context.SaveChangesAsync();
                 }

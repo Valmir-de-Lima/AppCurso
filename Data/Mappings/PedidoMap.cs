@@ -30,16 +30,11 @@ namespace AppCurso.Data.Mappings
                  .HasColumnName("ProdutoId")
                  .HasColumnType("INTEGER");
 
-            builder.Property(x => x.Descricao)
-                 .IsRequired()  // NT NULL
-                 .HasColumnName("Descricao")
-                 .HasColumnType("TEXT")
-                 .HasMaxLength(80);
-
-            builder.Property(x => x.Preco)
-                 .IsRequired()  // NT NULL
-                 .HasColumnName("Preco")
-                 .HasColumnType("DECIMAL");
+            // Relacionamento com Produto
+            builder.HasOne(p => p.Produto)
+                .WithMany()
+                .HasForeignKey(p => p.ProdutoId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
