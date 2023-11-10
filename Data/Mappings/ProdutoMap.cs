@@ -28,13 +28,7 @@ namespace AppCurso.Data.Mappings
             builder.Property(x => x.Preco)
                  .IsRequired()  // NT NULL
                  .HasColumnName("Preco")
-                 .HasColumnType("REAL");
-
-            // Relacionamentos um para muitos
-            // builder.HasOne(x => x.Modulo)
-            //     .WithMany(x => x.Aulas)
-            //     .HasConstraintName("FK_Aula_Modulo")
-            //     .OnDelete(DeleteBehavior.Cascade);
+                 .HasColumnType("DECIMAL");
         }
     }
 }

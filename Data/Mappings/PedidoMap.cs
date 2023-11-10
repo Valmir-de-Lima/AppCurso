@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AppCurso.Data.Mappings
 {
-    public class ModuloMap : IEntityTypeConfiguration<Modulo>
+    public class PedidoMap : IEntityTypeConfiguration<Pedido>
     {
-        public void Configure(EntityTypeBuilder<Modulo> builder)
+        public void Configure(EntityTypeBuilder<Pedido> builder)
         {
             // Tabela
-            builder.ToTable("Modulo");
+            builder.ToTable("Pedido");
 
             // Chave Primária
             builder.HasKey(x => x.Id);
@@ -19,11 +19,16 @@ namespace AppCurso.Data.Mappings
                 .ValueGeneratedOnAdd();
 
             // Propriedades            
-            builder.Property(x => x.Titulo)
+            builder.Property(x => x.Cliente)
                  .IsRequired()  // NT NULL
                  .HasColumnName("Titulo")
                  .HasColumnType("TEXT")
                  .HasMaxLength(80);
+
+            builder.Property(x => x.ProdutoId)
+                 .IsRequired()  // NT NULL
+                 .HasColumnName("ProdutoId")
+                 .HasColumnType("INTEGER");
 
             builder.Property(x => x.Descricao)
                  .IsRequired()  // NT NULL
@@ -31,16 +36,10 @@ namespace AppCurso.Data.Mappings
                  .HasColumnType("TEXT")
                  .HasMaxLength(80);
 
-            builder.Property(x => x.OrdemExibicao)
+            builder.Property(x => x.Preco)
                  .IsRequired()  // NT NULL
-                 .HasColumnName("OrdemDeExibicao")
-                 .HasColumnType("INTEGER");
-
-            // Relacionamentos um para muitos
-            builder.HasOne(x => x.Curso)
-                .WithMany(x => x.Modulos)
-                .HasConstraintName("FK_Modulo_Curso")
-                .OnDelete(DeleteBehavior.Cascade);
+                 .HasColumnName("Preco")
+                 .HasColumnType("DECIMAL");
         }
     }
 }

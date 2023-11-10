@@ -27,5 +27,5 @@ public class Curso
     [DisplayName("horas")]
     public int DuracaoEmHoras { get; set; }
 
-    public IList<Modulo>? Modulos { get; set; }
+    //public IList<Modulo>? Modulos { get; set; }
 }

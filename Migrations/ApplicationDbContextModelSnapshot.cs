@@ -54,14 +54,17 @@ namespace AppCurso.Migrations
                     b.ToTable("Curso", (string)null);
                 });
 
-            modelBuilder.Entity("AppCurso.Models.Modulo", b =>
+            modelBuilder.Entity("AppCurso.Models.Pedido", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CursoId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Cliente")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("Titulo");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
@@ -69,21 +72,17 @@ namespace AppCurso.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("Descricao");
 
-                    b.Property<int>("OrdemExibicao")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("OrdemDeExibicao");
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("DECIMAL")
+                        .HasColumnName("Preco");
 
-                    b.Property<string>("Titulo")
-                        .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("TEXT")
-                        .HasColumnName("Titulo");
+                    b.Property<int>("ProdutoId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("ProdutoId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CursoId");
-
-                    b.ToTable("Modulo", (string)null);
+                    b.ToTable("Pedido", (string)null);
                 });
 
             modelBuilder.Entity("AppCurso.Models.Produto", b =>
@@ -99,7 +98,7 @@ namespace AppCurso.Migrations
                         .HasColumnName("Descricao");
 
                     b.Property<decimal>("Preco")
-                        .HasColumnType("REAL")
+                        .HasColumnType("DECIMAL")
                         .HasColumnName("Preco");
 
                     b.HasKey("Id");
@@ -303,18 +302,6 @@ namespace AppCurso.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("AppCurso.Models.Modulo", b =>
-                {
-                    b.HasOne("AppCurso.Models.Curso", "Curso")
-                        .WithMany("Modulos")
-                        .HasForeignKey("CursoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_Modulo_Curso");
-
-                    b.Navigation("Curso");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -364,11 +351,6 @@ namespace AppCurso.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("AppCurso.Models.Curso", b =>
-                {
-                    b.Navigation("Modulos");
                 });
 #pragma warning restore 612, 618
         }

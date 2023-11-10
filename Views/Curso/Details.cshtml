@@ -44,43 +44,43 @@
     </dl>
     <hr />
 
-    <div class="accordion">
-        @foreach (var modulo in Model.Modulos)
-        {
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true">
-                        <div class="container">
-                            <div class="row row-cols-auto">
-                                <div class="col">
-                                    <b>
-                                        @Html.DisplayNameFor(modelItem => modulo.OrdemExibicao)
-                                        <label>:&nbsp</label>
-                                        @Html.DisplayFor(modelItem => modulo.OrdemExibicao)
-                                    </b>
-                                </div>
-                                <div class="col">
-                                    <b>
-                                        @Html.DisplayNameFor(modelItem => modulo.Id)
-                                        <label>:&nbsp</label>
-                                        @Html.DisplayFor(modelItem => modulo.Id)
-                                    </b>
-                                </div>
-                                <div class="col">
-                                    <b>
-                                        @Html.DisplayNameFor(modelItem => modulo.Titulo)
-                                        <label>:&nbsp</label>
-                                        @Html.DisplayFor(modelItem => modulo.Titulo)
-                                    </b>
-                                </div>
-                            </div>
-                        </div>
-                    </button>
-                </h2>
-            </div>
-        }
+    @* <div class="accordion">
+    @foreach (var modulo in Model.Modulos)
+    {
+    <div class="accordion-item">
+    <h2 class="accordion-header">
+    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true">
+    <div class="container">
+    <div class="row row-cols-auto">
+    <div class="col">
+    <b>
+    @Html.DisplayNameFor(modelItem => modulo.OrdemExibicao)
+    <label>:&nbsp</label>
+    @Html.DisplayFor(modelItem => modulo.OrdemExibicao)
+    </b>
     </div>
+    <div class="col">
+    <b>
+    @Html.DisplayNameFor(modelItem => modulo.Id)
+    <label>:&nbsp</label>
+    @Html.DisplayFor(modelItem => modulo.Id)
+    </b>
+    </div>
+    <div class="col">
+    <b>
+    @Html.DisplayNameFor(modelItem => modulo.Titulo)
+    <label>:&nbsp</label>
+    @Html.DisplayFor(modelItem => modulo.Titulo)
+    </b>
+    </div>
+    </div>
+    </div>
+    </button>
+    </h2>
+    </div>
+    }
+    </div> *@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Editar</a> |

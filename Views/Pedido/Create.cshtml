@@ -1,17 +1,27 @@
-@model AppCurso.Models.Produto
+@model AppCurso.Models.Pedido
 
 @{
-    ViewData["Title"] = "Criar Produto";
+    ViewData["Title"] = "Criar Pedido";
 }
 
 <h1>Criar</h1>
 
-<h4>Produto</h4>
+<h4>Modulo</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Cliente" class="control-label"></label>
+                <input asp-for="Cliente" class="form-control" value="@User.Identity?.Name" />
+                <span asp-validation-for="Cliente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProdutoId" class="control-label"></label>
+                <input asp-for="ProdutoId" class="form-control" />
+                <span asp-validation-for="ProdutoId" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Descricao" class="control-label"></label>
                 <input asp-for="Descricao" class="form-control" />
@@ -22,6 +32,11 @@
                 <input asp-for="Preco" class="form-control" />
                 <span asp-validation-for="Preco" class="text-danger"></span>
             </div>
+
+            @* <div class="form-group">
+            <label asp-for="CursoId" class="control-label"></label>
+            <select asp-for="CursoId" class="form-control" asp-items="ViewBag.CursoId"></select>
+            </div> *@
             <div class="form-group">
                 <input type="submit" value="Criar" class="btn btn-primary" />
             </div>

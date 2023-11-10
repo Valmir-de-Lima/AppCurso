@@ -66,13 +66,29 @@ namespace AppCurso.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Pedido",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Titulo = table.Column<string>(type: "TEXT", maxLength: 80, nullable: false),
+                    ProdutoId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Descricao = table.Column<string>(type: "TEXT", maxLength: 80, nullable: false),
+                    Preco = table.Column<decimal>(type: "DECIMAL", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Pedido", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Produto",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Descricao = table.Column<string>(type: "TEXT", maxLength: 80, nullable: false),
-                    Preco = table.Column<decimal>(type: "REAL", nullable: false)
+                    Preco = table.Column<decimal>(type: "DECIMAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -185,28 +201,6 @@ namespace AppCurso.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Modulo",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Titulo = table.Column<string>(type: "TEXT", maxLength: 80, nullable: false),
-                    Descricao = table.Column<string>(type: "TEXT", maxLength: 80, nullable: false),
-                    OrdemDeExibicao = table.Column<int>(type: "INTEGER", nullable: false),
-                    CursoId = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Modulo", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Modulo_Curso",
-                        column: x => x.CursoId,
-                        principalTable: "Curso",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -243,11 +237,6 @@ namespace AppCurso.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Modulo_CursoId",
-                table: "Modulo",
-                column: "CursoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -268,7 +257,10 @@ namespace AppCurso.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Modulo");
+                name: "Curso");
+
+            migrationBuilder.DropTable(
+                name: "Pedido");
 
             migrationBuilder.DropTable(
                 name: "Produto");
@@ -278,9 +270,6 @@ namespace AppCurso.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Curso");
         }
     }
 }

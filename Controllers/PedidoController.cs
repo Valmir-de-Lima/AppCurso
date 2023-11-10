@@ -12,11 +12,11 @@ using Microsoft.AspNetCore.Authorization;
 namespace AppCurso
 {
     [Authorize]
-    public class ModuloController : Controller
+    public class PedidoController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public ModuloController(ApplicationDbContext context)
+        public PedidoController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -24,20 +24,19 @@ namespace AppCurso
         // GET: Modulo
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Modulos.Include(m => m.Curso);
-            return View(await applicationDbContext.ToListAsync());
+            var list = _context.Pedidos?.ToListAsync();
+            return View(await list!);
         }
 
         // GET: Modulo/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Modulos == null)
+            if (id == null || _context.Pedidos == null)
             {
                 return NotFound();
             }
 
-            var modulo = await _context.Modulos
-                .Include(x => x.Curso)
+            var modulo = await _context.Pedidos
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (modulo == null)
@@ -51,7 +50,6 @@ namespace AppCurso
         // GET: Modulo/Create
         public IActionResult Create()
         {
-            ViewData["CursoId"] = new SelectList(_context.Cursos, "Id", "Titulo");
             return View();
         }
 
@@ -60,32 +58,30 @@ namespace AppCurso
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Titulo,Descricao,OrdemExibicao,CursoId")] Modulo modulo)
+        public async Task<IActionResult> Create([Bind("Id,Cliente,ProdutoId,Descricao,Preco")] Pedido pedido)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(modulo);
+                _context.Add(pedido);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CursoId"] = new SelectList(_context.Cursos, "Id", "Titulo", modulo.CursoId);
-            return View(modulo);
+            return View(pedido);
         }
 
         // GET: Modulo/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Modulos == null)
+            if (id == null || _context.Pedidos == null)
             {
                 return NotFound();
             }
 
-            var modulo = await _context.Modulos.FindAsync(id);
+            var modulo = await _context.Pedidos.FindAsync(id);
             if (modulo == null)
             {
                 return NotFound();
             }
-            ViewData["CursoId"] = new SelectList(_context.Cursos, "Id", "Titulo", modulo.CursoId);
             return View(modulo);
         }
 
@@ -94,9 +90,9 @@ namespace AppCurso
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,Descricao,OrdemExibicao,CursoId")] Modulo modulo)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Cliente,ProdutoId,Descricao,Preco")] Pedido pedido)
         {
-            if (id != modulo.Id)
+            if (id != pedido.Id)
             {
                 return NotFound();
             }
@@ -105,12 +101,12 @@ namespace AppCurso
             {
                 try
                 {
-                    _context.Update(modulo);
+                    _context.Update(pedido);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ModuloExists(modulo.Id))
+                    if (!PedidoExists(pedido.Id))
                     {
                         return NotFound();
                     }
@@ -121,20 +117,18 @@ namespace AppCurso
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CursoId"] = new SelectList(_context.Cursos, "Id", "Titulo", modulo.CursoId);
-            return View(modulo);
+            return View(pedido);
         }
 
         // GET: Modulo/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Modulos == null)
+            if (id == null || _context.Pedidos == null)
             {
                 return NotFound();
             }
 
-            var modulo = await _context.Modulos
-                .Include(m => m.Curso)
+            var modulo = await _context.Pedidos
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (modulo == null)
             {
@@ -149,23 +143,23 @@ namespace AppCurso
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Modulos == null)
+            if (_context.Pedidos == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Modulos'  is null.");
             }
-            var modulo = await _context.Modulos.FindAsync(id);
+            var modulo = await _context.Pedidos.FindAsync(id);
             if (modulo != null)
             {
-                _context.Modulos.Remove(modulo);
+                _context.Pedidos.Remove(modulo);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ModuloExists(int id)
+        private bool PedidoExists(int id)
         {
-            return (_context.Modulos?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Pedidos?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

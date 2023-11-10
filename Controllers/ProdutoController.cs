@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AppCurso.Data;
 using AppCurso.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Globalization;
 
 namespace AppCurso
 {
@@ -56,7 +57,6 @@ namespace AppCurso
         // GET: Aula/Create
         public IActionResult Create()
         {
-            ViewData["ModuloId"] = new SelectList(_context.Modulos, "Id", "Titulo");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace AppCurso
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Titulo,Descricao,UrlVideoAula,ModuloId")] Produto produto)
+        public async Task<IActionResult> Create([Bind("Id,Descricao,Preco")] Produto produto)
         {
             if (ModelState.IsValid)
             {
@@ -73,7 +73,6 @@ namespace AppCurso
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ModuloId"] = new SelectList(_context.Modulos, "Id", "Titulo");
             return View(produto);
         }
 
@@ -85,13 +84,12 @@ namespace AppCurso
                 return NotFound();
             }
 
-            var aula = await _context.Produtos.FindAsync(id);
-            if (aula == null)
+            var produto = await _context.Produtos.FindAsync(id);
+            if (produto == null)
             {
                 return NotFound();
             }
-            ViewData["ModuloId"] = new SelectList(_context.Modulos, "Id", "Titulo");
-            return View(aula);
+            return View(produto);
         }
 
         // POST: Aula/Edit/5
@@ -99,7 +97,7 @@ namespace AppCurso
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,Descricao,UrlVideoAula,ModuloId")] Produto produto)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Descricao,Preco")] Produto produto)
         {
             if (id != produto.Id)
             {
@@ -115,7 +113,7 @@ namespace AppCurso
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AulaExists(produto.Id))
+                    if (!ProdutoExists(produto.Id))
                     {
                         return NotFound();
                     }
@@ -126,7 +124,6 @@ namespace AppCurso
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ModuloId"] = new SelectList(_context.Modulos, "Id", "Titulo");
             return View(produto);
         }
 
@@ -155,19 +152,19 @@ namespace AppCurso
         {
             if (_context.Produtos == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Aulas'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Produtos'  is null.");
             }
-            var aula = await _context.Produtos.FindAsync(id);
-            if (aula != null)
+            var produto = await _context.Produtos.FindAsync(id);
+            if (produto != null)
             {
-                _context.Produtos.Remove(aula);
+                _context.Produtos.Remove(produto);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AulaExists(int id)
+        private bool ProdutoExists(int id)
         {
             return (_context.Produtos?.Any(e => e.Id == id)).GetValueOrDefault();
         }

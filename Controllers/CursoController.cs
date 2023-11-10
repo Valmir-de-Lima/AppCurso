@@ -38,7 +38,6 @@ namespace AppCurso
             }
 
             var curso = await _context.Cursos
-                .Include(x => x.Modulos)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (curso == null)
