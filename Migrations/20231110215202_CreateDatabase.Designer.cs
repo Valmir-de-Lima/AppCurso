@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppCurso.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231110171338_CreateDatabase")]
+    [Migration("20231110215202_CreateDatabase")]
     partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,13 +68,11 @@ namespace AppCurso.Migrations
                         .HasColumnType("TEXT")
                         .HasColumnName("Titulo");
 
-                    b.Property<int>("ProdutoId")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("ProdutoId");
+                    b.Property<decimal>("Total")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("Total");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProdutoId");
 
                     b.ToTable("Pedido", (string)null);
                 });
@@ -92,7 +90,7 @@ namespace AppCurso.Migrations
                         .HasColumnName("Descricao");
 
                     b.Property<decimal>("Preco")
-                        .HasColumnType("DECIMAL")
+                        .HasColumnType("TEXT")
                         .HasColumnName("Preco");
 
                     b.HasKey("Id");
@@ -296,15 +294,19 @@ namespace AppCurso.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("AppCurso.Models.Pedido", b =>
+            modelBuilder.Entity("PedidoProduto", b =>
                 {
-                    b.HasOne("AppCurso.Models.Produto", "Produto")
-                        .WithMany()
-                        .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                    b.Property<int>("PedidosId")
+                        .HasColumnType("INTEGER");
 
-                    b.Navigation("Produto");
+                    b.Property<int>("ProdutosId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("PedidosId", "ProdutosId");
+
+                    b.HasIndex("ProdutosId");
+
+                    b.ToTable("PedidoProduto", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -354,6 +356,21 @@ namespace AppCurso.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PedidoProduto", b =>
+                {
+                    b.HasOne("AppCurso.Models.Pedido", null)
+                        .WithMany()
+                        .HasForeignKey("PedidosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AppCurso.Models.Produto", null)
+                        .WithMany()
+                        .HasForeignKey("ProdutosId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

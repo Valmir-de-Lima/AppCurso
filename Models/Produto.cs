@@ -16,7 +16,6 @@ public class Produto
 
     [DisplayName("Preço")]
     [Required(ErrorMessage = "Campo obrigatório")]
-    [DataType(DataType.Currency)]
-    [Column(TypeName = "decimal(18, 2)")]
     public decimal Preco { get; set; }
+    public List<Pedido> Pedidos { get; set; } = new List<Pedido>();
 }

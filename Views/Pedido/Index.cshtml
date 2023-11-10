@@ -9,40 +9,64 @@
 <p>
     <a asp-action="Create">Criar um novo Pedido</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cliente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProdutoId)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+@foreach (var pedido in Model)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Cliente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Total)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
             <tr>
                 <td>
-                    @Html.DisplayFor(model => Model.First().Id)
+                    @Html.DisplayFor(model => pedido.Id)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => Model.First().Cliente)
+                    @Html.DisplayFor(model => pedido.Cliente)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProdutoId)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Detalhar</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+                    @Html.DisplayFor(model => pedido.Total)
                 </td>
             </tr>
-        }
-    </tbody>
-</table>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Produtos.First().Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Produtos.First().Descricao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Produtos.First().Preco)
+                </th>
+            </tr>
+            @foreach (var produto in pedido.Produtos)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => produto.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => produto.Descricao)
+                    </td>
+                    <td>
+                        @produto.Preco.ToString("C")
+                    </td>
+                </tr>
+            }
+            <td>
+                <a asp-action="Edit" asp-route-id="@pedido.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@pedido.Id">Detalhar</a> |
+                <a asp-action="Delete" asp-route-id="@pedido.Id">Deletar</a>
+            </td>
+        </tbody>
+    </table>
+}

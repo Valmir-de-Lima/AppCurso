@@ -25,16 +25,16 @@ namespace AppCurso.Data.Mappings
                  .HasColumnType("TEXT")
                  .HasMaxLength(80);
 
-            builder.Property(x => x.ProdutoId)
+            builder.Property(x => x.Total)
                  .IsRequired()  // NT NULL
-                 .HasColumnName("ProdutoId")
-                 .HasColumnType("INTEGER");
+                .HasColumnName("Total")
+                .HasColumnType("TEXT");
 
-            // Relacionamento com Produto
-            builder.HasOne(p => p.Produto)
-                .WithMany()
-                .HasForeignKey(p => p.ProdutoId)
-                .OnDelete(DeleteBehavior.Restrict);
+            // Relacionamento M:N com a tabela de junção
+            builder
+                .HasMany(pedido => pedido.Produtos)
+                .WithMany(produto => produto.Pedidos)
+                .UsingEntity(j => j.ToTable("PedidoProduto"));
         }
     }
 }

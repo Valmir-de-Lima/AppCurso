@@ -18,14 +18,6 @@
                 <input asp-for="Cliente" class="form-control" />
                 <span asp-validation-for="Cliente" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ProdutoId" class="control-label"></label>
-                <select asp-for="ProdutoId" asp-items="@(new SelectList(ViewBag.Produtos, "Id", "Descricao", "Preco"))"
-                    class="form-control">
-                    <option value="">Selecione um Produto</option>
-                </select>
-                <span asp-validation-for="ProdutoId" class="text-danger"></span>
-            </div>
             @* <div class="form-group">
             <label asp-for="CursoId" class="control-label"></label>
             <select asp-for="CursoId" class="form-control" asp-items="ViewBag.CursoId"></select>

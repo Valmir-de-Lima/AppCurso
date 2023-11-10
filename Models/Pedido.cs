@@ -14,10 +14,11 @@ public class Pedido
     [Required(ErrorMessage = "Campo obrigatório")]
     public string Cliente { get; set; } = "";
 
-    [DisplayName("Produto")]
+    [DisplayName("Total")]
     [Required(ErrorMessage = "Campo obrigatório")]
-    public int ProdutoId { get; set; }
+    [DataType(DataType.Currency)]
+    [Column(TypeName = "decimal(18, 2)")]
+    public decimal Total { get; set; }
 
-    [ForeignKey("ProdutoId")]
-    public Produto Produto { get; set; } = new();
+    public List<Produto> Produtos { get; set; } = new List<Produto>();
 }

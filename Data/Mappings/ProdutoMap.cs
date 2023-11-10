@@ -28,7 +28,7 @@ namespace AppCurso.Data.Mappings
             builder.Property(x => x.Preco)
                  .IsRequired()  // NT NULL
                  .HasColumnName("Preco")
-                 .HasColumnType("DECIMAL");
+                 .HasColumnType("TEXT");
         }
     }
 }

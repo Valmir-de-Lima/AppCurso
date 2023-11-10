@@ -24,7 +24,9 @@ namespace AppCurso
         // GET: Modulo
         public async Task<IActionResult> Index()
         {
-            var list = _context.Pedidos?.ToListAsync();
+            var list = _context.Pedidos?
+                            .Include(p => p.Produtos)
+                            .ToListAsync();
             return View(await list!);
         }
 
@@ -36,15 +38,16 @@ namespace AppCurso
                 return NotFound();
             }
 
-            var modulo = await _context.Pedidos
+            var pedido = await _context.Pedidos
+                .Include(p => p.Produtos)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (modulo == null)
+            if (pedido == null)
             {
                 return NotFound();
             }
 
-            return View(modulo);
+            return View(pedido);
         }
 
         // GET: Modulo/Create
@@ -53,11 +56,8 @@ namespace AppCurso
             // Obtenha a lista de produtos do banco de dados
             var produtos = _context.Produtos!.ToList();
 
-            // Crie um SelectList para os produtos
-            SelectList produtoList = new SelectList(produtos, "Id", "Descricao", "Preco");
-
             // Armazene o SelectList em ViewBag para uso na visão
-            ViewBag.ProdutoId = produtoList;
+            ViewBag.Produtos = produtos;
             return View();
         }
 
@@ -66,13 +66,29 @@ namespace AppCurso
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Cliente,ProdutoId,Descricao,Preco")] Pedido pedido)
+        public async Task<IActionResult> Create([Bind("Id,Cliente,Total")] Pedido pedido, string[] ProdutoSelecionado)
         {
             if (ModelState.IsValid)
             {
-                Produto? produto = await _context.Produtos!.FindAsync(pedido.ProdutoId);
-                if (produto is not null)
-                    pedido.Produto = produto;
+                if (ProdutoSelecionado != null && ProdutoSelecionado.Any())
+                {
+                    // Aqui você pode usar ProdutosSelecionados para obter os IDs dos produtos selecionados
+                    // e atribuir esses produtos ao pedido da maneira desejada.
+
+                    List<Produto> produtosSelecionados = await _context.Produtos?
+                        .Where(p => ProdutoSelecionado.Contains(p.Id.ToString()))
+                        .ToListAsync()!;
+
+                    // Exemplo: atribuir a lista de produtos selecionados ao pedido
+                    pedido.Produtos = produtosSelecionados;
+
+                    decimal total = 0;
+                    foreach (Produto produto in pedido.Produtos.ToList())
+                    {
+                        total += produto.Preco;
+                    }
+                    pedido.Total = total;
+                }
 
                 _context.Add(pedido);
                 await _context.SaveChangesAsync();
@@ -89,12 +105,14 @@ namespace AppCurso
                 return NotFound();
             }
 
-            var modulo = await _context.Pedidos.FindAsync(id);
-            if (modulo == null)
+            var pedido = await _context.Pedidos
+                                .Include(p => p.Produtos)
+                                .FirstOrDefaultAsync(m => m.Id == id);
+            if (pedido == null)
             {
                 return NotFound();
             }
-            return View(modulo);
+            return View(pedido);
         }
 
         // POST: Modulo/Edit/5
@@ -113,9 +131,6 @@ namespace AppCurso
             {
                 try
                 {
-                    Produto? produto = await _context.Produtos!.FindAsync(pedido.ProdutoId);
-                    if (produto is not null)
-                        pedido.Produto = produto;
                     _context.Update(pedido);
                     await _context.SaveChangesAsync();
                 }
@@ -143,14 +158,14 @@ namespace AppCurso
                 return NotFound();
             }
 
-            var modulo = await _context.Pedidos
+            var pedido = await _context.Pedidos
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (modulo == null)
+            if (pedido == null)
             {
                 return NotFound();
             }
 
-            return View(modulo);
+            return View(pedido);
         }
 
         // POST: Modulo/Delete/5
@@ -162,10 +177,10 @@ namespace AppCurso
             {
                 return Problem("Entity set 'ApplicationDbContext.Modulos'  is null.");
             }
-            var modulo = await _context.Pedidos.FindAsync(id);
-            if (modulo != null)
+            var pedido = await _context.Pedidos.FindAsync(id);
+            if (pedido != null)
             {
-                _context.Pedidos.Remove(modulo);
+                _context.Pedidos.Remove(pedido);
             }
 
             await _context.SaveChangesAsync();
