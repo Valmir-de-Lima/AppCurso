@@ -16,6 +16,7 @@ public class Produto
 
     [DisplayName("Preço")]
     [Required(ErrorMessage = "Campo obrigatório")]
+    [PrecoValido(ErrorMessage = "Formato inválido. Use um número com até duas casas decimais.")]
     public decimal Preco { get; set; }
     public List<Pedido> Pedidos { get; set; } = new List<Pedido>();
 }

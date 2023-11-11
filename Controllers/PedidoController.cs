@@ -112,6 +112,13 @@ namespace AppCurso
             {
                 return NotFound();
             }
+
+            // Obtenha a lista de produtos do banco de dados
+            var produtos = _context.Produtos!.ToList();
+
+            // Armazene o SelectList em ViewBag para uso na visão
+            ViewBag.Produtos = produtos;
+
             return View(pedido);
         }
 
@@ -120,7 +127,7 @@ namespace AppCurso
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Cliente,ProdutoId,Descricao,Preco")] Pedido pedido)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Cliente,Total,Produtos")] Pedido pedido, string[] ProdutoSelecionado)
         {
             if (id != pedido.Id)
             {
@@ -131,7 +138,34 @@ namespace AppCurso
             {
                 try
                 {
-                    _context.Update(pedido);
+                    if (ProdutoSelecionado != null && ProdutoSelecionado.Any())
+                    {
+                        // Aqui você pode usar ProdutosSelecionados para obter os IDs dos produtos selecionados
+                        // e atribuir esses produtos ao pedido da maneira desejada.
+
+                        List<Produto> produtosSelecionados = await _context.Produtos?
+                            .Where(p => ProdutoSelecionado.Contains(p.Id.ToString()))
+                            .ToListAsync()!;
+
+                        // Exemplo: atribuir a lista de produtos selecionados ao pedido
+                        pedido.Produtos = produtosSelecionados;
+
+                        decimal total = 0;
+                        foreach (Produto produto in pedido.Produtos.ToList())
+                        {
+                            total += produto.Preco;
+                        }
+                        pedido.Total = total;
+                    }
+
+                    Pedido? ped = await _context.Pedidos!
+                                .Include(p => p.Produtos)
+                                .FirstOrDefaultAsync(m => m.Id == id);
+                    ped!.Cliente = pedido.Cliente;
+                    ped.Total = pedido.Total;
+                    ped.Produtos = pedido.Produtos.ToList();
+
+                    _context.Update(ped);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

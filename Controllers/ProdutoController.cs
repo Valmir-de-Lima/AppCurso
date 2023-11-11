@@ -65,10 +65,11 @@ namespace AppCurso
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Descricao,Preco")] Produto produto)
+        public async Task<IActionResult> Create([Bind("Id,Descricao")] Produto produto, string Preco)
         {
             if (ModelState.IsValid)
             {
+                produto.Preco = decimal.Parse(Preco, CultureInfo.InvariantCulture);
                 _context.Add(produto);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -97,7 +98,7 @@ namespace AppCurso
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Descricao,Preco")] Produto produto)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Descricao")] Produto produto, string Preco)
         {
             if (id != produto.Id)
             {
@@ -108,6 +109,7 @@ namespace AppCurso
             {
                 try
                 {
+                    produto.Preco = decimal.Parse(Preco, CultureInfo.InvariantCulture);
                     _context.Update(produto);
                     await _context.SaveChangesAsync();
                 }

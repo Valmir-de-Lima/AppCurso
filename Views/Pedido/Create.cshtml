@@ -22,27 +22,29 @@
                 <input asp-for="Total" class="form-control" value="" readonly id="Total" />
                 <span asp-validation-for="Total" class="text-danger"></span>
             </div>
-
+            <br>
             <div class="form-group">
-                <label>Produtos Disponíveis:</label>
+                <label>Selecione os produtos:</label>
                 @foreach (var produto in ViewBag.Produtos)
                 {
-                    <div>
+                    <div style="display: flex; justify-content: space-between; padding-right: 10px;">
                         <label>
                             <input type="checkbox" name="ProdutoSelecionado" value="@produto.Id"
-                                data-preco="@produto.Preco" />@produto.Descricao -
-                            @produto.Preco.ToString("C")
+                                data-preco="@produto.Preco" />
                         </label>
+                        <label>@produto.Descricao</label>
+                        <label>@produto.Preco.ToString("C")</label>
                     </div>
                 }
             </div>
+            <br>
             <div class="form-group">
                 <input type="submit" value="Criar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
+<hr />
 <div>
     <a asp-action="Index">Voltar para a listagem</a>
 </div>
