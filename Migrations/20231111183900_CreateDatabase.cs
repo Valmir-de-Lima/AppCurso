@@ -72,7 +72,9 @@ namespace AppCurso.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Titulo = table.Column<string>(type: "TEXT", maxLength: 80, nullable: false),
-                    Total = table.Column<decimal>(type: "TEXT", nullable: false)
+                    Status = table.Column<string>(type: "TEXT", maxLength: 80, nullable: false),
+                    Total = table.Column<decimal>(type: "TEXT", nullable: false),
+                    PagamentoId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -200,6 +202,27 @@ namespace AppCurso.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Pagamento",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Titulo = table.Column<string>(type: "TEXT", maxLength: 80, nullable: false),
+                    Total = table.Column<decimal>(type: "TEXT", nullable: false),
+                    PedidoId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Pagamento", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Pagamento_Pedido_PedidoId",
+                        column: x => x.PedidoId,
+                        principalTable: "Pedido",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PedidoProduto",
                 columns: table => new
                 {
@@ -261,6 +284,12 @@ namespace AppCurso.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Pagamento_PedidoId",
+                table: "Pagamento",
+                column: "PedidoId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PedidoProduto_ProdutosId",
                 table: "PedidoProduto",
                 column: "ProdutosId");
@@ -285,6 +314,9 @@ namespace AppCurso.Migrations
 
             migrationBuilder.DropTable(
                 name: "Curso");
+
+            migrationBuilder.DropTable(
+                name: "Pagamento");
 
             migrationBuilder.DropTable(
                 name: "PedidoProduto");

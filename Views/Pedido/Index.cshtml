@@ -21,6 +21,9 @@
                     @Html.DisplayNameFor(model => model.First().Cliente)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.First().Status)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.First().Total)
                 </th>
             </tr>
@@ -32,6 +35,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(model => pedido.Cliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => pedido.Status)
                 </td>
                 <td>
                     @Html.DisplayFor(model => pedido.Total)
@@ -65,7 +71,9 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@pedido.Id">Editar</a> |
                 <a asp-action="Details" asp-route-id="@pedido.Id">Detalhar</a> |
-                <a asp-action="Delete" asp-route-id="@pedido.Id">Deletar</a>
+                <a asp-action="Delete" asp-route-id="@pedido.Id">Deletar</a> |
+                <a asp-action="Payment" asp-route-id="@pedido.Id">Pagar</a> |
+                <a asp-action="Recept" asp-route-id="@pedido.Id">Receber</a>
             </td>
         </tbody>
     </table>

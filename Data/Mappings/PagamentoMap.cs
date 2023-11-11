@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AppCurso.Data.Mappings
 {
-    public class PedidoMap : IEntityTypeConfiguration<Pedido>
+    public class PagamentoMap : IEntityTypeConfiguration<Pagamento>
     {
-        public void Configure(EntityTypeBuilder<Pedido> builder)
+        public void Configure(EntityTypeBuilder<Pagamento> builder)
         {
             // Tabela
-            builder.ToTable("Pedido");
+            builder.ToTable("Pagamento");
 
             // Chave Primária
             builder.HasKey(x => x.Id);
@@ -25,22 +25,14 @@ namespace AppCurso.Data.Mappings
                  .HasColumnType("TEXT")
                  .HasMaxLength(80);
 
-            // Propriedades            
-            builder.Property(x => x.Status)
-                 .HasColumnName("Status")
-                 .HasColumnType("TEXT")
-                 .HasMaxLength(80);
-
             builder.Property(x => x.Total)
                  .IsRequired()  // NT NULL
                 .HasColumnName("Total")
                 .HasColumnType("TEXT");
 
-            // Relacionamento M:N com a tabela de junção
-            builder
-                .HasMany(pedido => pedido.Produtos)
-                .WithMany(produto => produto.Pedidos)
-                .UsingEntity(j => j.ToTable("PedidoProduto"));
+            builder.HasOne(x => x.Pedido)
+                .WithOne(p => p.Pagamento) // Um para um
+                .HasForeignKey<Pagamento>(x => x.PedidoId);
         }
     }
 }

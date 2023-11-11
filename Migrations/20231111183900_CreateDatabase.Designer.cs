@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppCurso.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231110215202_CreateDatabase")]
+    [Migration("20231111183900_CreateDatabase")]
     partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -56,6 +56,33 @@ namespace AppCurso.Migrations
                     b.ToTable("Curso", (string)null);
                 });
 
+            modelBuilder.Entity("AppCurso.Models.Pagamento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Cliente")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("Titulo");
+
+                    b.Property<int>("PedidoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("Total");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PedidoId")
+                        .IsUnique();
+
+                    b.ToTable("Pagamento", (string)null);
+                });
+
             modelBuilder.Entity("AppCurso.Models.Pedido", b =>
                 {
                     b.Property<int>("Id")
@@ -67,6 +94,15 @@ namespace AppCurso.Migrations
                         .HasMaxLength(80)
                         .HasColumnType("TEXT")
                         .HasColumnName("Titulo");
+
+                    b.Property<int>("PagamentoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("Status");
 
                     b.Property<decimal>("Total")
                         .HasColumnType("TEXT")
@@ -309,6 +345,17 @@ namespace AppCurso.Migrations
                     b.ToTable("PedidoProduto", (string)null);
                 });
 
+            modelBuilder.Entity("AppCurso.Models.Pagamento", b =>
+                {
+                    b.HasOne("AppCurso.Models.Pedido", "Pedido")
+                        .WithOne("Pagamento")
+                        .HasForeignKey("AppCurso.Models.Pagamento", "PedidoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pedido");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -372,6 +419,12 @@ namespace AppCurso.Migrations
                         .WithMany()
                         .HasForeignKey("ProdutosId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AppCurso.Models.Pedido", b =>
+                {
+                    b.Navigation("Pagamento")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

@@ -4,26 +4,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AppCurso.Models;
 
-public class Pedido
+public class Pagamento
 {
-    [DisplayName("Pedido")]
+    [DisplayName("Código")]
     [Required(ErrorMessage = "Campo obrigatório")]
     public int Id { get; set; }
 
-    [DisplayName("Cliente")]
+    [DisplayName("Descrição")]
     [Required(ErrorMessage = "Campo obrigatório")]
     public string Cliente { get; set; } = "";
 
-    [DisplayName("Cliente")]
-    public string Status { get; set; } = "";
-
-    [DisplayName("Total")]
+    [DisplayName("Preço")]
     [Required(ErrorMessage = "Campo obrigatório")]
-    [DataType(DataType.Currency)]
-    [Column(TypeName = "decimal(18, 2)")]
+    [PrecoValido(ErrorMessage = "Formato inválido. Use um número com até duas casas decimais.")]
     public decimal Total { get; set; }
-    public List<Produto> Produtos { get; set; } = new List<Produto>();
 
-    public int PagamentoId { get; set; }
-    public Pagamento? Pagamento { get; set; }
+    [DisplayName("Pedido")]
+    public int PedidoId { get; set; }
+    public Pedido? Pedido { get; set; }
 }

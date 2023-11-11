@@ -89,6 +89,7 @@ namespace AppCurso
                     }
                     pedido.Total = total;
                 }
+                pedido.Status = "Pedido criado. Aguardando pagamento";
 
                 _context.Add(pedido);
                 await _context.SaveChangesAsync();
@@ -123,8 +124,6 @@ namespace AppCurso
         }
 
         // POST: Modulo/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Cliente,Total,Produtos")] Pedido pedido, string[] ProdutoSelecionado)
@@ -224,6 +223,125 @@ namespace AppCurso
         private bool PedidoExists(int id)
         {
             return (_context.Pedidos?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+
+        // GET: Modulo/Payment/6
+        public async Task<IActionResult> Payment(int? id)
+        {
+            if (id == null || _context.Pedidos == null)
+            {
+                return NotFound();
+            }
+
+            var pedido = await _context.Pedidos
+                                .Include(p => p.Produtos)
+                                .FirstOrDefaultAsync(m => m.Id == id);
+            if (pedido == null)
+            {
+                return NotFound();
+            }
+
+            return View(pedido);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PaymentCreate(int id)
+        {
+            try
+            {
+                Pedido? pedido = await _context.Pedidos!
+                    .Include(p => p.Produtos)
+                    .FirstOrDefaultAsync(m => m.Id == id);
+
+                if (pedido == null)
+                {
+                    return NotFound();
+                }
+
+                Pagamento pagamento = new Pagamento
+                {
+                    Cliente = pedido.Cliente,
+                    Total = pedido.Total,
+                    PedidoId = pedido.Id,
+                    Pedido = pedido
+                };
+
+                _context.Add(pagamento);
+                await _context.SaveChangesAsync();
+
+                pedido.Status = "Pedido pago. Aguardando recebimento";
+
+                _context.Update(pedido);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PedidoExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+        }
+
+        // GET: Modulo/Payment/6
+        public async Task<IActionResult> Recept(int? id)
+        {
+            if (id == null || _context.Pedidos == null)
+            {
+                return NotFound();
+            }
+
+            var pedido = await _context.Pedidos
+                                .Include(p => p.Produtos)
+                                .FirstOrDefaultAsync(m => m.Id == id);
+            if (pedido == null)
+            {
+                return NotFound();
+            }
+
+            return View(pedido);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ReceptCreate(int id)
+        {
+            try
+            {
+                Pedido? pedido = await _context.Pedidos!
+                    .Include(p => p.Produtos)
+                    .FirstOrDefaultAsync(m => m.Id == id);
+
+                if (pedido == null)
+                {
+                    return NotFound();
+                }
+
+                pedido.Status = "Pedido recebido. Aguardando avaliacao";
+
+                _context.Update(pedido);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PedidoExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
     }
 }
