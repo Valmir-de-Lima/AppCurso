@@ -71,7 +71,7 @@ namespace AppCurso.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Titulo = table.Column<string>(type: "TEXT", maxLength: 80, nullable: false),
+                    Cliente = table.Column<string>(type: "TEXT", maxLength: 80, nullable: false),
                     Status = table.Column<string>(type: "TEXT", maxLength: 80, nullable: false),
                     Total = table.Column<decimal>(type: "TEXT", nullable: false),
                     PagamentoId = table.Column<int>(type: "INTEGER", nullable: false)
@@ -207,7 +207,8 @@ namespace AppCurso.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Titulo = table.Column<string>(type: "TEXT", maxLength: 80, nullable: false),
+                    Cliente = table.Column<string>(type: "TEXT", maxLength: 80, nullable: false),
+                    FormaPagamento = table.Column<string>(type: "TEXT", maxLength: 80, nullable: false),
                     Total = table.Column<decimal>(type: "TEXT", nullable: false),
                     PedidoId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
@@ -288,6 +289,16 @@ namespace AppCurso.Migrations
                 table: "Pagamento",
                 column: "PedidoId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pedido_Cliente",
+                table: "Pagamento",
+                column: "Cliente");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pedido_Cliente1",
+                table: "Pedido",
+                column: "Cliente");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PedidoProduto_ProdutosId",

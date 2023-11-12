@@ -20,32 +20,16 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/Curso/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3Vyc29cQ3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/dotnet/AppCurso/AppCurso/Views/Curso/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3Vyc29cRGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/dotnet/AppCurso/AppCurso/Views/Curso/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3Vyc29cRGV0YWlscy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/dotnet/AppCurso/AppCurso/Views/Curso/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3Vyc29cRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/dotnet/AppCurso/AppCurso/Views/Curso/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3Vyc29cSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/dotnet/AppCurso/AppCurso/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/dotnet/AppCurso/AppCurso/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/dotnet/AppCurso/AppCurso/Views/Pagamento/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnYW1lbnRvXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/dotnet/AppCurso/AppCurso/Views/Pedido/Create.cshtml]

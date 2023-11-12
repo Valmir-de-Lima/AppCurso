@@ -21,7 +21,14 @@ namespace AppCurso.Data.Mappings
             // Propriedades            
             builder.Property(x => x.Cliente)
                  .IsRequired()  // NT NULL
-                 .HasColumnName("Titulo")
+                 .HasColumnName("Cliente")
+                 .HasColumnType("TEXT")
+                 .HasMaxLength(80);
+
+            // Propriedades            
+            builder.Property(x => x.FormaPagamento)
+                 .IsRequired()  // NT NULL
+                 .HasColumnName("FormaPagamento")
                  .HasColumnType("TEXT")
                  .HasMaxLength(80);
 
@@ -33,6 +40,10 @@ namespace AppCurso.Data.Mappings
             builder.HasOne(x => x.Pedido)
                 .WithOne(p => p.Pagamento) // Um para um
                 .HasForeignKey<Pagamento>(x => x.PedidoId);
+
+            // Indice auxiliar
+            builder
+                .HasIndex(x => x.Cliente, "IX_Pedido_Cliente");
         }
     }
 }

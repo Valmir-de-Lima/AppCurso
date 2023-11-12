@@ -6,9 +6,9 @@
 
 <h1>Deletar</h1>
 
-<h3>Você confirma deletar esta Aula?</h3>
+<h3>Você confirma deletar este Produto?</h3>
 <div>
-    <h4>Aula</h4>
+    <h4>Produto</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -24,10 +24,13 @@
             @Html.DisplayFor(model => model.Preco)
         </dd>
     </dl>
-
+    <br>
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Deletar" class="btn btn-danger" /> |
-        <a asp-action="Index">Voltar para a listagem</a>
+        <input type="submit" value="Deletar" class="btn btn-danger" />
     </form>
+</div>
+<hr />
+<div>
+    <a asp-action="Index">Voltar para a listagem</a>
 </div>

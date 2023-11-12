@@ -26,6 +26,7 @@ namespace AppCurso
         {
             var list = _context.Pedidos?
                             .Include(p => p.Produtos)
+                            .Where(x => x.Cliente == User.Identity!.Name)
                             .ToListAsync();
             return View(await list!);
         }
@@ -246,7 +247,7 @@ namespace AppCurso
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> PaymentCreate(int id)
+        public async Task<IActionResult> PaymentCreate(int id, string formaPagamento)
         {
             try
             {
@@ -262,6 +263,7 @@ namespace AppCurso
                 Pagamento pagamento = new Pagamento
                 {
                     Cliente = pedido.Cliente,
+                    FormaPagamento = formaPagamento,
                     Total = pedido.Total,
                     PedidoId = pedido.Id,
                     Pedido = pedido

@@ -64,7 +64,13 @@ namespace AppCurso.Migrations
                         .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("TEXT")
-                        .HasColumnName("Titulo");
+                        .HasColumnName("Cliente");
+
+                    b.Property<string>("FormaPagamento")
+                        .IsRequired()
+                        .HasMaxLength(80)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("FormaPagamento");
 
                     b.Property<int>("PedidoId")
                         .HasColumnType("INTEGER");
@@ -77,6 +83,8 @@ namespace AppCurso.Migrations
 
                     b.HasIndex("PedidoId")
                         .IsUnique();
+
+                    b.HasIndex(new[] { "Cliente" }, "IX_Pedido_Cliente");
 
                     b.ToTable("Pagamento", (string)null);
                 });
@@ -91,7 +99,7 @@ namespace AppCurso.Migrations
                         .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("TEXT")
-                        .HasColumnName("Titulo");
+                        .HasColumnName("Cliente");
 
                     b.Property<int>("PagamentoId")
                         .HasColumnType("INTEGER");
@@ -107,6 +115,9 @@ namespace AppCurso.Migrations
                         .HasColumnName("Total");
 
                     b.HasKey("Id");
+
+                    b.HasIndex(new[] { "Cliente" }, "IX_Pedido_Cliente")
+                        .HasDatabaseName("IX_Pedido_Cliente1");
 
                     b.ToTable("Pedido", (string)null);
                 });
@@ -422,8 +433,7 @@ namespace AppCurso.Migrations
 
             modelBuilder.Entity("AppCurso.Models.Pedido", b =>
                 {
-                    b.Navigation("Pagamento")
-                        .IsRequired();
+                    b.Navigation("Pagamento");
                 });
 #pragma warning restore 612, 618
         }

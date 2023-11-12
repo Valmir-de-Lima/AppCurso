@@ -14,66 +14,66 @@
     <table class="table">
         <thead>
             <tr>
-                <th>
+                <th style="color: white;">
                     @Html.DisplayNameFor(model => model.First().Id)
                 </th>
-                <th>
+                <th style="color: white;">
                     @Html.DisplayNameFor(model => model.First().Cliente)
                 </th>
-                <th>
+                <th style="color: white;">
                     @Html.DisplayNameFor(model => model.First().Status)
                 </th>
-                <th>
+                <th style="color: white;">
                     @Html.DisplayNameFor(model => model.First().Total)
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>
+                <td style="color: #DCDCDC;">
                     @Html.DisplayFor(model => pedido.Id)
                 </td>
-                <td>
+                <td style="color: #DCDCDC;">
                     @Html.DisplayFor(model => pedido.Cliente)
                 </td>
-                <td>
+                <td style="color: #DCDCDC;">
                     @Html.DisplayFor(model => pedido.Status)
                 </td>
-                <td>
+                <td style="color: #DCDCDC;">
                     @Html.DisplayFor(model => pedido.Total)
                 </td>
             </tr>
             <tr>
-                <th>
+                <th style="color: white;">
                     @Html.DisplayNameFor(model => model.First().Produtos.First().Id)
                 </th>
-                <th>
+                <th style="color: white;">
                     @Html.DisplayNameFor(model => model.First().Produtos.First().Descricao)
                 </th>
-                <th>
+                <th style="color: white;">
                     @Html.DisplayNameFor(model => model.First().Produtos.First().Preco)
                 </th>
             </tr>
-            @foreach (var produto in pedido.Produtos)
-            {
+    @foreach (var produto in pedido.Produtos)
+    {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(model => produto.Id)
+                    <td style="color: #DCDCDC;">
+                @Html.DisplayFor(model => produto.Id)
                     </td>
-                    <td>
-                        @Html.DisplayFor(model => produto.Descricao)
+                    <td style="color: #DCDCDC;">
+                @Html.DisplayFor(model => produto.Descricao)
                     </td>
-                    <td>
-                        @produto.Preco.ToString("C")
+                    <td style="color: #DCDCDC;">
+                @produto.Preco.ToString("C")
                     </td>
                 </tr>
-            }
-            <td>
-                <a asp-action="Edit" asp-route-id="@pedido.Id">Editar</a> |
-                <a asp-action="Details" asp-route-id="@pedido.Id">Detalhar</a> |
-                <a asp-action="Delete" asp-route-id="@pedido.Id">Deletar</a> |
-                <a asp-action="Payment" asp-route-id="@pedido.Id">Pagar</a> |
-                <a asp-action="Recept" asp-route-id="@pedido.Id">Receber</a>
+    }
+            <td style="color: #df6919;">
+                <a asp-action="Edit" asp-route-id="@pedido.Id" style="color: #df6919;">Editar</a> |
+                <a asp-action="Details" asp-route-id="@pedido.Id" style="color: #df6919;">Detalhar</a> |
+                <a asp-action="Delete" asp-route-id="@pedido.Id" style="color: #df6919;">Deletar</a> |
+                <a asp-action="Payment" asp-route-id="@pedido.Id" style="color: #df6919;">Pagar</a> |
+                <a asp-action="Recept" asp-route-id="@pedido.Id" style="color: #df6919;">Receber</a>
             </td>
         </tbody>
     </table>

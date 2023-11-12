@@ -10,11 +10,15 @@ public class Pagamento
     [Required(ErrorMessage = "Campo obrigatório")]
     public int Id { get; set; }
 
-    [DisplayName("Descrição")]
+    [DisplayName("Cliente")]
     [Required(ErrorMessage = "Campo obrigatório")]
     public string Cliente { get; set; } = "";
 
-    [DisplayName("Preço")]
+    [DisplayName("Forma de Pagamento")]
+    [Required(ErrorMessage = "Campo obrigatório")]
+    public string FormaPagamento { get; set; } = "";
+
+    [DisplayName("Total")]
     [Required(ErrorMessage = "Campo obrigatório")]
     [PrecoValido(ErrorMessage = "Formato inválido. Use um número com até duas casas decimais.")]
     public decimal Total { get; set; }

@@ -14,11 +14,11 @@ public class Pedido
     [Required(ErrorMessage = "Campo obrigatório")]
     public string Cliente { get; set; } = "";
 
-    [DisplayName("Cliente")]
+    [DisplayName("Status")]
     public string Status { get; set; } = "";
 
     [DisplayName("Total")]
-    [Required(ErrorMessage = "Campo obrigatório")]
+    [Required(ErrorMessage = "Selecione pelo menos um produto")]
     [DataType(DataType.Currency)]
     [Column(TypeName = "decimal(18, 2)")]
     public decimal Total { get; set; }

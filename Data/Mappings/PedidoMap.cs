@@ -21,7 +21,7 @@ namespace AppCurso.Data.Mappings
             // Propriedades            
             builder.Property(x => x.Cliente)
                  .IsRequired()  // NT NULL
-                 .HasColumnName("Titulo")
+                 .HasColumnName("Cliente")
                  .HasColumnType("TEXT")
                  .HasMaxLength(80);
 
@@ -41,6 +41,10 @@ namespace AppCurso.Data.Mappings
                 .HasMany(pedido => pedido.Produtos)
                 .WithMany(produto => produto.Pedidos)
                 .UsingEntity(j => j.ToTable("PedidoProduto"));
+
+            // Indice auxiliar
+            builder
+                .HasIndex(x => x.Cliente, "IX_Pedido_Cliente");
         }
     }
 }
