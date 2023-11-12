@@ -71,13 +71,13 @@
             <td style="color: #df6919;">
                 @if (@pedido.Status == "Pedido criado. Aguardando pagamento")
                 {
-                    <a asp-action="Edit" asp-route-id="@pedido.Id" style="color: #df6919;">Editar</a><a> | </a>
-                    <a asp-action="Delete" asp-route-id="@pedido.Id" style="color: #df6919;">Deletar</a><a> | </a>
-                    <a asp-action="Payment" asp-route-id="@pedido.Id" style="color: #df6919;">Pagar</a><a> | </a>
+                    <a asp-action="Edit" asp-route-id="@pedido.Id" style="color: #df6919;">Editar</a><a style="color: #df6919;">  |  </a>
+                    <a asp-action="Delete" asp-route-id="@pedido.Id" style="color: #df6919;">Deletar</a><a style="color: #df6919;">  |  </a>
+                    <a asp-action="Payment" asp-route-id="@pedido.Id" style="color: #df6919;">Pagar</a><a style="color: #df6919;">  |  </a>
                 }
                 @if (@pedido.Status == "Pedido pago. Aguardando recebimento")
                 {
-                    <a asp-action="Recept" asp-route-id="@pedido.Id" style="color: #df6919;">Receber</a><a> | </a>
+                    <a asp-action="Recept" asp-route-id="@pedido.Id" style="color: #df6919;">Receber</a><a style="color: #df6919;">  |  </a>
                 }
                 <a asp-action="Details" asp-route-id="@pedido.Id" style="color: #df6919;">Detalhar</a>
             </td>
