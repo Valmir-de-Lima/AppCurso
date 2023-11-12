@@ -9,97 +9,101 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AppCurso
 build_property.RootNamespace = AppCurso
-build_property.ProjectDir = C:\dotnet\AppCurso\AppCurso\
+build_property.ProjectDir = C:\dotnet\AppCurso\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\dotnet\AppCurso\AppCurso
+build_property.MSBuildProjectDirectory = C:\dotnet\AppCurso
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/dotnet/AppCurso/AppCurso/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/dotnet/AppCurso/AppCurso/Views/Pedido/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXBwQ3Vyc29cVmlld3NcUGVkaWRvXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/dotnet/AppCurso/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/Home/Index.cshtml]
+[C:/dotnet/AppCurso/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/Home/Privacy.cshtml]
+[C:/dotnet/AppCurso/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/Pagamento/Index.cshtml]
+[C:/dotnet/AppCurso/Views/Pagamento/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFnYW1lbnRvXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/Pedido/Create.cshtml]
+[C:/dotnet/AppCurso/Views/Pedido/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/Pedido/Delete.cshtml]
+[C:/dotnet/AppCurso/Views/Pedido/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/Pedido/Details.cshtml]
+[C:/dotnet/AppCurso/Views/Pedido/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/Pedido/Edit.cshtml]
+[C:/dotnet/AppCurso/Views/Pedido/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/Pedido/Index.cshtml]
+[C:/dotnet/AppCurso/Views/Pedido/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/Pedido/Payment.cshtml]
+[C:/dotnet/AppCurso/Views/Pedido/Payment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXFBheW1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/Pedido/Recept.cshtml]
+[C:/dotnet/AppCurso/Views/Pedido/Recept.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvXFJlY2VwdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/Produto/Create.cshtml]
+[C:/dotnet/AppCurso/Views/Produto/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHV0b1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/Produto/Delete.cshtml]
+[C:/dotnet/AppCurso/Views/Produto/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHV0b1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/Produto/Details.cshtml]
+[C:/dotnet/AppCurso/Views/Produto/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHV0b1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/Produto/Edit.cshtml]
+[C:/dotnet/AppCurso/Views/Produto/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHV0b1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/Produto/Index.cshtml]
+[C:/dotnet/AppCurso/Views/Produto/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHV0b1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/Shared/Error.cshtml]
+[C:/dotnet/AppCurso/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/Shared/_LoginPartial.cshtml]
+[C:/dotnet/AppCurso/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/dotnet/AppCurso/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/_ViewImports.cshtml]
+[C:/dotnet/AppCurso/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/_ViewStart.cshtml]
+[C:/dotnet/AppCurso/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/dotnet/AppCurso/AppCurso/Views/Shared/_Layout.cshtml]
+[C:/dotnet/AppCurso/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-9f159mf4ja
